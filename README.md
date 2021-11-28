@@ -23,7 +23,7 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
 | `!stats [AOC_USERNAME]` | Send individual stats for a user. Can be called with and without an argument, without an argument it will use the account that is registered with your user. |
 
 ## Running the bot
-1. Clone this repo to your machine with `git clone REPO_URL`. 
+1. Clone this repo to your machine with `git clone https://github.com/TheFutureGadgetsLab/AdventOfCodeBot.git`. 
 2. Run `python3 -m pip install requirements`
 3. Run `python3 main.py`
 

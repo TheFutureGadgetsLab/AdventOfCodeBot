@@ -44,4 +44,4 @@ The custom scoring (`!clb`) uses custom set start times by players. These are se
 These are the shelve files that store state so it persists between bot shutdowns. hackikuji.mayoi stores the registered users and their start times, and senjougahara.hitagi stores the scheduled time for the server to run.
 
 ## Attribution
-Built by Future Gadgets Lab members [@haydn-jones](https://github.com/haydn-jones), [@bensonalec](https://github.com/bensonalec), and [@benpm](https://github.com/benpm)
+Built by Future Gadgets Lab members [@haydn-jones](https://github.com/haydn-jones), [@bensonalec](https://github.com/bensonalec), and [@benpm](https://github.com/benpm).

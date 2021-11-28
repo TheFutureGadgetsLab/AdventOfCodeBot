@@ -28,7 +28,7 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
 3. Run `python3 main.py`
 
 ## Getting Started
-In order to configure the bot you'll need to open the config located at /src/config.py and set the `YEAR`, `SESSION_COOKIE`, `DISCORD_TOKEN` and `LEADERBOARD`. The year should be whichever year you're trying to get on the scoreboard, the session cookie should be the session cookie you get when logging into Advent of Code, and the `LEADERBOARD` should be the ID of the leaderboard you're trying to access.
+In order to configure the bot you'll need to open the config located at /src/config.py and set the `YEAR`, `SESSION_COOKIE`, `DISCORD_TOKEN` and `LEADERBOARD`. The `YEAR` should be whichever year you're trying to get on the scoreboard, the `SESSION_COOKIE` should be the session cookie you get when logging into Advent of Code, and the `LEADERBOARD` should be the ID of the leaderboard you're trying to access. You will need to set up a Discord bot and add it to the server you plan to use this bot in, and then retrieve the bot token and set the `DISCORD_TOKEN` to be that. 
 
 ## Scoring
 This bot provides two unique methods of scoring the leaderboard, specifically based on start time of a problem. Both scoring methods work by counting the number of players on the leaderboard (n), then for each star giving the first player to finish n stars, the second player n - 1 stars, and so on, until the last player recieves 1 star. 

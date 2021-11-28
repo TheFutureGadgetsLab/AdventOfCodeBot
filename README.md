@@ -13,14 +13,14 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
 ![the !stats Command](https://media.discordapp.net/attachments/732435214986510340/914385531528433704/unknown.png?width=324&height=678)
 
 ## Commands
-| Command                    | Description |
-| -----------                | ----------- |
-| `!plb`                     | Print out the private leaderboard. This uses the original advent of code scoring scheme.|
-| `!clb`                     | Prints out the custom leaderboard. This uses our custom advent of code scoring scheme.|
-| `!register [AOC_USERNAME]`     | Associate yourself with given AoC user. Can be called without an argument, if so will print out the list of registered users. If no argument, will register your discord ID with your Advent of Code username for custom scoring.|
-| `!start <DAY_NUMBER>` | Start a day. This will set your starttime for our custom scoring. |
+| Command                      | Description                                                                                                                                                                                                                                                                                                                                       |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `!plb`                       | Print out the private leaderboard. This uses the original advent of code scoring scheme.                                                                                                                                                                                                                                                          |
+| `!clb`                       | Prints out the custom leaderboard. This uses our custom advent of code scoring scheme.                                                                                                                                                                                                                                                            |
+| `!register [AOC_USERNAME]`   | Associate yourself with given AoC user. Can be called without an argument, if so will print out the list of registered users. If no argument, will register your discord ID with your Advent of Code username for custom scoring.                                                                                                                 |
+| `!start <DAY_NUMBER>`        | Start a day. This will set your starttime for our custom scoring.                                                                                                                                                                                                                                                                                 |
 | `!schedule [<+/-><MINUTES>]` | Can be called without an argument, if so will print the next scheduled send time. With an argument, will schedule a time for the leaderboard to send automatically. Takes in a indicator (either + or -)  and an integer (minutes) and sends the leaderboard at the start time of the competition for that day (midnight EST), given that offset. |
-| `!stats [AOC_USERNAME]` | Send individual stats for a user. Can be called with and without an argument, without an argument it will use the account that is registered with your user. |
+| `!stats [AOC_USERNAME]`      | Send individual stats for a user. Can be called with and without an argument, without an argument it will use the account that is registered with your user.                                                                                                                                                                                      |
 
 ## Running the bot
 1. Clone this repo to your machine with `git clone https://github.com/TheFutureGadgetsLab/AdventOfCodeBot.git`. 
@@ -28,7 +28,14 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
 3. Run `python3 main.py`
 
 ## Getting Started
-In order to configure the bot you'll need to open the config located at /src/config.py and set the `YEAR`, `SESSION_COOKIE`, `DISCORD_TOKEN` and `LEADERBOARD`. The `YEAR` should be whichever year you're trying to get on the scoreboard, the `SESSION_COOKIE` should be the session cookie you get when logging into Advent of Code, and the `LEADERBOARD` should be the ID of the leaderboard you're trying to access. You will need to set up a Discord bot and add it to the server you plan to use this bot in, and then retrieve the bot token and set the `DISCORD_TOKEN` to be that. 
+To get started, you will need to create a bot in your discord server for AdventOfCodeBot, then fill in the config located at `./src/config.py` with the following values:
+
+| Value            | Description                                                                |
+|------------------|----------------------------------------------------------------------------|
+| `YEAR`           | Whichever year you are using for the leaderboard. Likely the current year. |
+| `SESSION_COOKIE` | Session cookie you get when logging into Advent of Code.                   |
+| `LEADERBOARD`    | ID of the leaderboard you're trying to access.                             |
+| `DISCORD_TOKEN`  | Token for the bot you created to be used by AdventofCodeBot.               |
 
 ## Scoring
 This bot provides two unique methods of scoring the leaderboard, specifically based on start time of a problem. Both scoring methods work by counting the number of players on the leaderboard (n), then for each star giving the first player to finish n stars, the second player n - 1 stars, and so on, until the last player recieves 1 star. 

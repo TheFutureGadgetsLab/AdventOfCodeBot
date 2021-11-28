@@ -1,0 +1,6 @@
+discord.py
+asyncio
+pytz
+requests
+apscheduler
+tabulate

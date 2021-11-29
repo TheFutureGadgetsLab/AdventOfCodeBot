@@ -14,17 +14,32 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
     - [Original Scoring](#original-scoring)
     - [Custom Scoring](#custom-scoring)
   - [Attribution](#attribution)
+
 ## Screenshots
 
-*The Leaderboard in Discord*
+| | |
+|-|-|
+| *The Leaderboard in Discord* | ![The !plb Command](https://media.Discordapp.net/attachments/732435214986510340/914383644288766012/unknown.png?width=418&height=300)
+| *User Stats* | ![the !stats Command](https://media.Discordapp.net/attachments/732435214986510340/914385531528433704/unknown.png?width=324&height=678)
 
-![The !plb Command](https://media.Discordapp.net/attachments/732435214986510340/914383644288766012/unknown.png?width=944&height=678)
+## Getting Started
 
-*User Stats*
+1. `git clone https://github.com/TheFutureGadgetsLab/AdventOfCodeBot.git`. 
+2. You'll need to [create a bot](https://discord.com/developers/docs/intro#bots-and-apps) in your Discord server for AdventOfCodeBot
+3. Edit the config file located at `./src/config.py` with the following values:
 
-![the !stats Command](https://media.Discordapp.net/attachments/732435214986510340/914385531528433704/unknown.png?width=324&height=678)
+| Value            | Description                                                                |
+|------------------|----------------------------------------------------------------------------|
+| `YEAR`           | Whichever year you are using for the leaderboard. Likely the current year. |
+| `SESSION_COOKIE` | Session cookie you get when logging into Advent of Code. [(?)](https://github.com/wimglenn/advent-of-code-wim/issues/1)                    |
+| `LEADERBOARD`    | ID of the private leaderboard you're trying to access. (it's in the leaderboard's URL)                             |
+| `DISCORD_TOKEN`  | Token for the bot you created to be used by AdventofCodeBot. 
+
+4. Install the dependencies `python3 -m pip install requirements`
+5. `python3 main.py`     
 
 ## FAQ
+aka questions that haven't been asked yet but probably will be
 - **Why custom start times?**
     > We have a friend who lives in a timezone where Advent of Code problems release at 3:00AM, making it difficult for him to compete with us. With the bot anyone can start a problem when most convenient for them and have that time used in scoring.
 - **Can I participate by registering my Discord ID with the leaderboard if I'm not actually on the Advent of Code private leaderboard?**
@@ -40,31 +55,27 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
 | `!register [AOC_USERNAME]`   | When called without argument it will print all Discord users registered on the leaderboard. When called with argument (your name on the Advent of Code leaderboard), it will associate your Discord ID with that username.                                                                                                                            |
 | `!start <DAY_NUMBER>`        | Start a day. This will set your starttime for our custom scoring.                                                                                                                                                                                                                                                                                 |
 | `!schedule [<+/-><MINUTES>]` | Can be called without an argument, if so will print the next scheduled send time. With an argument, will schedule a time for the leaderboard to send automatically. Takes in a indicator (either + or -)  and an integer (minutes) and sends the leaderboard at the start time of the competition for that day (midnight EST), given that offset. |
-| `!stats [AOC_USERNAME]`      | Send individual stats for a user. Can be called with and without an argument, without an argument it will use the account that is registered with your user.                                                                                                                                                                                      |
-
-## Running the bot
-1. Clone this repo to your machine with `git clone https://github.com/TheFutureGadgetsLab/AdventOfCodeBot.git`. 
-2. Run `python3 -m pip install requirements`
-3. Run `python3 main.py`
-
-## Getting Started
-To get started, you will need to create a bot in your Discord server for AdventOfCodeBot, then fill in the config located at `./src/config.py` with the following values:
-
-| Value            | Description                                                                |
-|------------------|----------------------------------------------------------------------------|
-| `YEAR`           | Whichever year you are using for the leaderboard. Likely the current year. |
-| `SESSION_COOKIE` | Session cookie you get when logging into Advent of Code.                    |
-| `LEADERBOARD`    | ID of the leaderboard you're trying to access.                              |
-| `DISCORD_TOKEN`  | Token for the bot you created to be used by AdventofCodeBot.                |
+| `!stats [AOC_USERNAME]`      | Send individual stats for a user. Can be called with and without an argument, without an argument it will use the account that is registered with your user.                                                                                                                                                                                      |          |
 
 ## Scoring
-This bot provides two unique methods of scoring the leaderboard, specifically based on start time of a problem. Both scoring methods follow the regular Advent of Code scoring, but differ by which start time is used.
+This bot provides two unique methods of scoring the leaderboard, specifically
+based on start time of a problem. Both scoring methods follow the regular
+Advent of Code scoring, but differ by which start time is used.
 
 ### Original Scoring
-The original scoring (`!plb`) uses the exact same scoring conditions as the original Advent of Code leaderboard, where start time for a problem is set by the time the problem opens (Midnight EST) for each day. 
+The original scoring (`!plb`) uses the exact same scoring conditions as the
+original Advent of Code leaderboard, where start time for a problem is set by
+the time the problem opens (Midnight EST) for each day. 
 
 ### Custom Scoring
-The custom scoring (`!clb`) uses custom set start times by players. These are set using the `!start <day>` command after a user has registered with `!register <username>`. If a user has not set a start time for a problem, the scoring algorithm will use the time that problem originally opened at Midnight EST of that day.
+The custom scoring (`!clb`) uses custom set start times by players.
+These are set using the `!start <day>` command after a user has registered
+with `!register <username>`. If a user has not set a start time for a problem,
+the scoring algorithm will use the time that problem originally opened at
+Midnight EST of that day.
 
 ## Attribution
-Built by Future Gadgets Lab members [@haydn-jones](https://github.com/haydn-jones), [@bensonalec](https://github.com/bensonalec), and [@benpm](https://github.com/benpm).
+Built by Future Gadgets Lab members
+[@haydn-jones](https://github.com/haydn-jones),
+[@bensonalec](https://github.com/bensonalec),
+and [@benpm](https://github.com/benpm).

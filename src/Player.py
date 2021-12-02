@@ -19,7 +19,7 @@ class Player:
         self.parse_dict(user)
 
     def parse_dict(self, user: dict):
-        self.name  = user['name']
+        self.name = user['name'] if user['name'] else f"User #{user['id']}"
         self.stars = user['stars']
         self.score = user['local_score']
 

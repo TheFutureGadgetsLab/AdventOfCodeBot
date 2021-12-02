@@ -15,10 +15,12 @@ class Problem:
     def parse_dict(self, problem: Optional[dict]):
         self.start_time = datetime(year=YEAR, month=12, day=self.day, hour=0, tzinfo=EST)
         if problem:
-            self.part1_finish_time = datetime.fromtimestamp(problem['1']['get_star_ts'], tz=UTC)
+            #NOTE: THE MINUS 240 part is because for unknown reasons the Advent of Code API returns dates 4 minutes ahead
+            self.part1_finish_time = datetime.fromtimestamp(problem['1']['get_star_ts'] - 240, tz=UTC)
             self.parts_finished = 1
             if '2' in problem:
-                self.part2_finish_time = datetime.fromtimestamp(problem['2']['get_star_ts'], tz=UTC)
+                #NOTE: THE MINUS 240 part is because for unknown reasons the Advent of Code API returns dates 4 minutes ahead
+                self.part2_finish_time = datetime.fromtimestamp(problem['2']['get_star_ts'] - 240, tz=UTC)
                 self.parts_finished = 2
 
     @property

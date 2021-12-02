@@ -8,4 +8,3 @@ DISCORD_TOKEN  = ''
 COMMAND_PREFIX = '!'
 UTC = pytz.timezone('UTC')
 EST = pytz.timezone('US/Eastern')
-MST = pytz.timezone('US/Mountain')

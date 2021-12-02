@@ -17,6 +17,6 @@ def start_session(day, author):
             else:
                 return "Session already started."
             db[str(author)] = a
-            return f"You ({db[str(author)]['username']}) started day {day}!"
+            return f"You ({db[str(author)]['username']}) started day {int(day) + 1}!"
     else:
         return "Day must be an integer."

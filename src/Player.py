@@ -35,6 +35,8 @@ class Player:
 
     def build_averages(self):
         ttf_list = [x.part2_time for x in self.days if x.part2_time]
+        if (len(ttf_list) == 0):
+            return ("N/A", "N/A", "N/A")
         average_ttf = sum(ttf_list,datetime.timedelta()) / len(ttf_list)
 
         part_one_ttf_list = [x.part1_time for x in self.days if x.part1_time]

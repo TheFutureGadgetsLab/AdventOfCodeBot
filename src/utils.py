@@ -1,8 +1,11 @@
+from datetime import datetime
+from logging import critical, debug, error, info, warning
+
 import discord
 import requests
 import simplejson
-from datetime import datetime
-from src.config import YEAR, SESSION_COOKIE, URL
+
+from src.config import SESSION_COOKIE, URL, YEAR
 
 
 def truncate_name(name):
@@ -47,13 +50,13 @@ cached_response = None
 cache_time = datetime.min
 
 def query_leaderboard_API():
-    #check the cachetime
     global cache_time
     global cached_response
     delta = datetime.now() - cache_time
-    #check that it's been more than 15 minutes since the request has been tried
+
+    # Check that it's been more than 15 minutes since the request has been tried
     if (delta.total_seconds() / 60) >= 15:
-        print("Hitting API")
+        debug("making GET request to API")
         cookies = dict(session=SESSION_COOKIE)
         response = requests.request("GET", URL, cookies=cookies)
         cache_time = datetime.now()
@@ -64,12 +67,12 @@ def check_validity_of_config():
     cookies = dict(session=SESSION_COOKIE)
     response = requests.request("GET", URL, cookies=cookies)
     if response.status_code == 404:
-        print("Year is invalid.")
+        error("config.py: YEAR is invalid")
     if response.status_code == 500:
-        print("Session cookie is invalid.")
+        error("config.py: SESSION_COOKIE is invalid")
     try:
         response.json()
     except simplejson.errors.JSONDecodeError: 
-        print("JSON is malformed. This may be due to an invalid leadboard ID.")
+        error("JSON is malformed. This may be due to an invalid leadboard ID.")
         return False
     return response.status_code == 200

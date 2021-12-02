@@ -1,7 +1,9 @@
-from typing import Optional
 from datetime import datetime
+from logging import critical, debug, error, info, warning
+from typing import Optional
 
-from src.config import YEAR, UTC, EST
+from src.config import EST, UTC, YEAR
+
 
 class Problem:
     def __init__(self, day: int, problem: dict):
@@ -11,6 +13,7 @@ class Problem:
         self.part1_finish_time = None
         self.part2_finish_time = None
         self.parse_dict(problem)
+        debug(f"problem {self.day} parsed")
 
     def parse_dict(self, problem: Optional[dict]):
         self.start_time = datetime(year=YEAR, month=12, day=self.day, hour=0, tzinfo=EST)

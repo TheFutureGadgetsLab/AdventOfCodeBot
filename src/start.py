@@ -1,6 +1,9 @@
 import shelve
 from datetime import datetime
+from logging import critical, debug, error, info, warning
+
 from src.config import EST
+
 
 async def run_start(ctx, arg):
     return start_session(arg, ctx.author)
@@ -19,4 +22,5 @@ def start_session(day, author):
             db[str(author)] = a
             return f"You ({db[str(author)]['username']}) started day {int(day) + 1}!"
     else:
+        warning(f"invalid day {day}, day must be an integer")
         return "Day must be an integer."

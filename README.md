@@ -41,6 +41,8 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
 aka questions that haven't been asked yet but probably will be
 - **Why custom start times?**
     > We have a friend who lives in a timezone where Advent of Code problems release at 3:00AM, making it difficult for him to compete with us. With the bot anyone can start a problem when most convenient for them and have that time used in scoring.
+- **Why is the scoreboard not updating right away?**
+    > Advent of Code requests that the API only be accessed once every 15 minutes. We cache the previous API response for the leaderboard until 15 minutes have passed and then we update the cache.
 - **Can I participate by registering my Discord ID with the leaderboard if I'm not actually on the Advent of Code private leaderboard?**
     > No, unfortunately not. You can only associate your Discord ID with a user found on the leaderboard. This is a neat idea though, and PRs are welcome.
 - **What are these weird files called `hackikuji.mayoi` and `senjougahara.hitagi`?**

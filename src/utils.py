@@ -1,6 +1,7 @@
 import discord
 import requests
 import simplejson
+from datetime import datetime
 from src.config import YEAR, SESSION_COOKIE, URL
 
 
@@ -41,6 +42,23 @@ def build_leaderboard_embed(title: str, first_place: str, leaderboard):
         fields
     )
     return embed
+
+cached_response = None
+cache_time = datetime.min
+
+def query_leaderboard_API():
+    #check the cachetime
+    global cache_time
+    global cached_response
+    delta = datetime.now() - cache_time
+    #check that it's been more than 15 minutes since the request has been tried
+    if (delta.total_seconds() / 60) >= 15:
+        print("Hitting API")
+        cookies = dict(session=SESSION_COOKIE)
+        response = requests.request("GET", URL, cookies=cookies)
+        cache_time = datetime.now()
+        cached_response = response.json()
+    return cached_response
 
 def check_validity_of_config():
     cookies = dict(session=SESSION_COOKIE)

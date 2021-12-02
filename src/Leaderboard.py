@@ -1,8 +1,5 @@
-import requests
-
-from src.config import SESSION_COOKIE, URL
 from src.Player import Player
-from src.utils import get_stars, truncate_name
+from src.utils import get_stars, truncate_name, query_leaderboard_API
 
 HEADER = """
 Day                1111111111222222
@@ -17,9 +14,7 @@ class Leaderboard:
         self.merge_shelf(db)
 
     def query_leaderboard(self):
-        cookies = dict(session=SESSION_COOKIE)
-        response = requests.request("GET", URL, cookies=cookies)
-        data = response.json()['members']
+        data = query_leaderboard_API()['members']
         for person in data.values():
             self.players.append(Player(person))
         self.players = sorted(self.players, key=lambda player: player.score, reverse=True)

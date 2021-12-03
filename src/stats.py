@@ -1,8 +1,12 @@
 import shelve
+from logging import critical, debug, error, info, warning
+
 import discord
-from src.Leaderboard import Leaderboard
+
 from src.config import YEAR
+from src.Leaderboard import Leaderboard
 from src.utils import build_embed
+
 
 async def run_stats(ctx, args):
     username = args
@@ -21,9 +25,11 @@ async def run_stats(ctx, args):
                 leaderboard = Leaderboard(db)
                 player = [pl for pl in leaderboard.players if pl.name.lower() == myUser['username'].lower()][0]
         except KeyError:
+            warning(f'user {ctx.author} not registered')
             await ctx.message.channel.send("No user associated with your discord ID. Use `!register [AOC_USERNAME]` to associate")
             return
     if not player:
+        warning(f'user {username} not found on scoreboard')
         await ctx.message.channel.send("User not found on your scoreboard.")
         return
     else:

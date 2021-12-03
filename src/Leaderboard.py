@@ -1,5 +1,7 @@
+from logging import critical, debug, error, info, warning
+
 from src.Player import Player
-from src.utils import get_stars, truncate_name, query_leaderboard_API
+from src.utils import get_stars, query_leaderboard_API, truncate_name
 
 HEADER = """
 Day                1111111111222222
@@ -49,6 +51,7 @@ class Leaderboard:
         inverted_db = {v['username'].lower(): {'start_times': v['start_times'], 'discord': k} for k,v in db.items()}
         for player in self.players:
             if player.name.lower() not in registered_players:
+                debug(f"in merge_self: '{player.name}' is not in registered_players")
                 continue
 
             player.discord = inverted_db[player.name.lower()]['discord']

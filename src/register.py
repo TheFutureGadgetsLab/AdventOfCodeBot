@@ -1,7 +1,11 @@
 import shelve
+from logging import critical, debug, error, info, warning
+
 import discord
-from src.utils import build_embed
+
 from src.Leaderboard import Leaderboard
+from src.utils import build_embed
+
 
 async def run_register(ctx, arg):
     if arg:
@@ -22,12 +26,16 @@ def register_user(username, author):
                     'username': username
                 }
             else:
+                warning(f"user {username} attempted to register {author} but username not found")
                 return "This user does not appear to be on the leaderboard."
         else:
+            warning(f"user {username} attempted to register {author} but they are already registered")
             return "User already registered."
+    info(f"user {username} registered as {author}")
     return f"{username} registered as {author}"
 
 async def send_registered_users(ctx):
+    debug("sending registered users")
     fields = []
     with shelve.open('hachikuji.mayoi') as db:
         for key, value in db.items():

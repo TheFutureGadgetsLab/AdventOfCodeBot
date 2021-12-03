@@ -1,7 +1,10 @@
+import datetime
+from logging import critical, debug, error, info, warning
+
+from tabulate import tabulate
+
 from src.Problem import Problem
 from src.utils import get_stars
-import datetime
-from tabulate import tabulate
 
 HEADER = """
 Day          1111111111222222
@@ -17,6 +20,8 @@ class Player:
         self.discord = None
 
         self.parse_dict(user)
+
+        debug(f"{self.name} init'd, they have {self.stars} stars")
 
     def parse_dict(self, user: dict):
         self.name = user['name'] if user['name'] else f"User #{user['id']}"
@@ -36,6 +41,7 @@ class Player:
     def build_averages(self):
         ttf_list = [x.part2_time for x in self.days if x.part2_time]
         if (len(ttf_list) == 0):
+            debug(f"{self.name} has no completed days, skipping")
             return ("N/A", "N/A", "N/A")
         average_ttf = sum(ttf_list,datetime.timedelta()) / len(ttf_list)
 

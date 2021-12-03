@@ -1,4 +1,5 @@
 import pytz
+import logging
 
 YEAR           = 2020
 SESSION_COOKIE = ""
@@ -8,3 +9,5 @@ DISCORD_TOKEN  = ''
 COMMAND_PREFIX = '!'
 UTC = pytz.timezone('UTC')
 EST = pytz.timezone('US/Eastern')
+
+logging.basicConfig(level=logging.DEBUG)

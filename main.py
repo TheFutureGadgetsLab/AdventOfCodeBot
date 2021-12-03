@@ -9,6 +9,8 @@ from src.register import run_register
 from src.start import run_start
 from src.stats import run_stats
 import discord
+from logging import debug, info, warning, error, critical
+
 bot = commands.Bot(command_prefix=COMMAND_PREFIX)
 bot.remove_command('help')
 
@@ -16,11 +18,12 @@ data_mutex = Lock()
 
 @bot.event
 async def on_ready():
-    print(f'We have logged in as {bot.user}')
+    info(f'logged in as {bot.user}')
     scheduler.remove_all_jobs()
 
 @bot.command()
 async def plb(ctx):
+    debug(f'cmd> {ctx.author}: public leaderboard')
     with shelve.open('hachikuji.mayoi') as db:
         leaderboard = Leaderboard(db)
         await ctx.message.channel.send(
@@ -33,6 +36,7 @@ async def plb(ctx):
 
 @bot.command()
 async def clb(ctx):
+    debug(f'cmd> {ctx.author}: custom leaderboard')
     with shelve.open('hachikuji.mayoi') as db:
         leaderboard = Leaderboard(db)
         await ctx.message.channel.send(
@@ -45,11 +49,13 @@ async def clb(ctx):
 
 @bot.command()
 async def register(ctx, *arg):
+    debug(f'cmd> {ctx.author}: register as {" ".join(arg)}')
     async with data_mutex:
         await run_register(ctx, " ".join(arg))
 
 @bot.command()
 async def start(ctx, arg):
+    debug(f'cmd> {ctx.author}: start {arg}')
     async with data_mutex:
         msg = await run_start(ctx, arg)
     if msg:
@@ -57,14 +63,17 @@ async def start(ctx, arg):
 
 @bot.command()
 async def schedule(ctx, *args):
+    debug(f'cmd> {ctx.author}: schedule {" ".join(args)}')
     await run_schedule(ctx, " ".join(args))
 
 @bot.command()
 async def stats(ctx, *args):
+    debug(f'cmd> {ctx.author}: stats {" ".join(args)}')
     await run_stats(ctx, " ".join(args).lower())
 
 @bot.command()
 async def help(ctx, *args):
+    debug(f'cmd> {ctx.author}: help')
     await ctx.message.channel.send(
         embed =build_embed(
             "Advent of Code Bot Commands", 
@@ -87,6 +96,6 @@ if __name__ == "__main__":
         try:
             bot.run(DISCORD_TOKEN)
         except discord.errors.LoginFailure:
-            print("Invalid discord token.")
+            error("invalid DISCORD_TOKEN!")
     else:
-        print("Invalid config file. See above for details.")
+        error("invalid config file, see above for details")

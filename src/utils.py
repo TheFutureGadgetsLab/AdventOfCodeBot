@@ -7,7 +7,6 @@ import simplejson
 
 from src.config import SESSION_COOKIE, URL, YEAR
 
-GITHUB_URL = "https://github.com/TheFutureGadgetsLab/AdventOfCodeBot"
 
 def truncate_name(name):
     return name[:18] + "…" if len(name) > 20 else name
@@ -36,7 +35,7 @@ def build_embed(title, description, url, color, fields):
 def build_leaderboard_embed(title: str, first_place: str, leaderboard):
     fields = [
         (f"{title} Leaderboard", leaderboard, False),
-        ("\u200BGithub:", GITHUB_URL, False)
+        ("\u200BGithub:", "https://github.com/TheFutureGadgetsLab/AdventOfCodeBot", False)
     ]
     embed = build_embed(
         f"Advent of Code {YEAR}", 

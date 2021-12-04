@@ -35,7 +35,7 @@ def build_embed(title, description, url, color, fields):
 def build_leaderboard_embed(title: str, first_place: str, leaderboard):
     fields = [
         (f"{title} Leaderboard", leaderboard, False),
-        ("\u200BGithub:", "https://github.com/bensonalec/AdventOfCodeBot", False)
+        ("\u200BGithub:", "https://github.com/TheFutureGadgetsLab/AdventOfCodeBot", False)
     ]
     embed = build_embed(
         f"Advent of Code {YEAR}", 

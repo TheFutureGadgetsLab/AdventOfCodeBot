@@ -38,7 +38,7 @@ async def run_stats(ctx, args):
             ("Stars", f"{player.stars} ⭐'s.\n{player.build_stars()}", False),
             ("Averages", f"Average time to finish each day: `{averages[0]}`\nAverage time to finish part one: `{averages[1]}`\nAverage time to finish part two: `{averages[2]}`", False),
             ("Details", f"```{player.build_detailed_days()[0:1023-6]}```", False),
-            ("\u200BGithub:", "https://github.com/bensonalec/AdventOfCodeBot", False)
+            ("\u200BGithub:", "https://github.com/TheFutureGadgetsLab/AdventOfCodeBot", False)
         ]
         embed = build_embed(f"Advent of Code {YEAR}", f"Individual stats for {player.name}!", "https://adventofcode.com", discord.Color.red(), fields)
 

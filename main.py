@@ -29,7 +29,7 @@ async def plb(ctx):
         await ctx.message.channel.send(
             embed=build_leaderboard_embed(
                 "Public", 
-                leaderboard.players[0].name, 
+                leaderboard.players_sorted_public()[0].name, 
                 leaderboard.public_leaderboard()
             )
         )
@@ -42,7 +42,7 @@ async def clb(ctx):
         await ctx.message.channel.send(
             embed=build_leaderboard_embed(
                 "Custom", 
-                leaderboard.players[0].name, 
+                leaderboard.players_sorted_custom()[0].name, 
                 leaderboard.custom_leaderboard()
             )
         )

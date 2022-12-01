@@ -9,7 +9,7 @@ from src.config import SESSION_COOKIE, URL, YEAR
 
 
 def truncate_name(name):
-    return name[:18] + "…" if len(name) > 20 else name
+    return name[:17] + "…" if len(name) > 19 else name
 
 def get_stars(player):
     string = []

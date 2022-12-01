@@ -22,6 +22,9 @@ class Leaderboard:
         self.players = sorted(self.players, key=lambda player: player.score, reverse=True)
 
     def custom_leaderboard(self):
+        return self.build_embed(self.custom_scores())
+    
+    def custom_scores(self):
         scores = {player: 0 for player in self.players}
         for day in range(0,25):
             part1 = sorted([
@@ -35,7 +38,14 @@ class Leaderboard:
             for pos, (player, _) in enumerate(part2):
                 scores[player] += len(self.players) - pos
 
-        return self.build_embed({k:v for k, v in sorted(scores.items(), key=lambda entry: entry[-1], reverse=True)})
+        return {k:v for k, v in sorted(scores.items(), key=lambda entry: entry[-1], reverse=True)}
+    
+    def players_sorted_public(self):
+        return sorted(self.players, key=lambda player: player.score, reverse=True)
+    
+    def players_sorted_custom(self):
+        scores = self.custom_scores()
+        return sorted(self.players, key=lambda player: scores[player], reverse=True)
 
     def public_leaderboard(self) -> str:
         return self.build_embed({player: player.score for player in self.players})

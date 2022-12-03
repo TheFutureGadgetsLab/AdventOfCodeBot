@@ -11,7 +11,10 @@ from src.stats import run_stats
 import discord
 from logging import debug, info, warning, error, critical
 
-bot = commands.Bot(command_prefix=COMMAND_PREFIX)
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix=COMMAND_PREFIX, intents=intents)
 bot.remove_command('help')
 
 data_mutex = Lock()

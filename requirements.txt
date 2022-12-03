@@ -4,3 +4,4 @@ pytz
 requests
 apscheduler
 tabulate
+simplejson

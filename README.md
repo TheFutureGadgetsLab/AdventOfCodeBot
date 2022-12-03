@@ -25,7 +25,8 @@ Discord bot for displaying [Advent of Code](https://adventofcode.com) private le
 
 1. `git clone https://github.com/TheFutureGadgetsLab/AdventOfCodeBot.git`. 
 2. You'll need to [create a bot](https://discord.com/developers/docs/intro#bots-and-apps) in your Discord server for AdventOfCodeBot
-3. Edit the config file located at `./src/config.py` with the following values:
+3. You'll also need to enable the Message Content Intent for your bot.
+4. Edit the config file located at `./src/config.py` with the following values:
 
 | Value            | Description                                                                |
 |------------------|----------------------------------------------------------------------------|

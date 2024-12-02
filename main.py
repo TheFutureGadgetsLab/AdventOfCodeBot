@@ -7,6 +7,7 @@ from src.utils import build_embed, build_leaderboard_embed, check_validity_of_co
 from src.schedule import scheduler, run_schedule
 from src.register import run_register
 from src.start import run_start
+from src.remove import run_remove
 from src.stats import run_stats
 import discord
 from logging import debug, info, warning, error, critical
@@ -65,6 +66,14 @@ async def start(ctx, arg):
         await ctx.message.channel.send(msg)
 
 @bot.command()
+async def remove(ctx, arg):
+    debug(f'cmd> {ctx.author}: remove {arg}')
+    async with data_mutex:
+        msg = await run_remove(ctx, arg)
+    if msg:
+        await ctx.message.channel.send(msg)
+
+@bot.command()
 async def schedule(ctx, *args):
     debug(f'cmd> {ctx.author}: schedule {" ".join(args)}')
     await run_schedule(ctx, " ".join(args))
@@ -88,6 +97,7 @@ async def help(ctx, *args):
                 (f"`{COMMAND_PREFIX}clb`", "Prints out the custom leaderboard. This uses our custom advent of code scoring scheme.", False), 
                 (f"`{COMMAND_PREFIX}register [AOC_USERNAME]`", "Associate yourself with given AoC user. Without argument will print out the list of registered users. With argument, will register your discord ID with your Advent of Code username for custom scoring.", False),
                 (f"`{COMMAND_PREFIX}start <DAY_NUMBER>`", "Start a day. This will set your starttime for our custom scoring.", False),
+                (f"`{COMMAND_PREFIX}remove <DAY_NUMBER>`", "Remove your starttime for our custom scoring on a day.", False),
                 (f"`{COMMAND_PREFIX}schedule [<+/-><MINUTES>]`", "Can be called without an argument, if so will print the next scheduled send time. With an argument, will schedule a time for the leaderboard to send automatically. Takes in a indicator (either + or -) and an integer (minutes) and sends the leaderboard at the start time of the competition for that day (midnight EST), given that offset.", False),
                 (f"`{COMMAND_PREFIX}stats [AOC_USERNAME]`", "Send individual stats for a user. Can be called with and without an argument, without an argument it will use the account that is registered with your user.", False),
             ]
